@@ -44,6 +44,10 @@
   border-radius: 10px;
 }
 
+.Display-info img {
+  max-width: 100%;
+}
+
 .Container {
   display: flex;
   flex-wrap: wrap;

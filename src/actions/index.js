@@ -1,1 +1,3 @@
-export const fakeAction = () => ({type: 'FAKE'});
+export const fakeAction = () => ({
+  type: 'FAKE'
+});

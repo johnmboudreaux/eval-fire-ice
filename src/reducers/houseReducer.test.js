@@ -35,7 +35,8 @@ describe('houseReducer', () => {
             "https://www.anapioficeandfire.com/api/characters/255",
             "https://www.anapioficeandfire.com/api/characters/256",
             "https://www.anapioficeandfire.com/api/characters/447",
-            "https://www.anapioficeandfire.com/api/characters/654",            "https://www.anapioficeandfire.com/api/characters/677",
+            "https://www.anapioficeandfire.com/api/characters/654",
+            "https://www.anapioficeandfire.com/api/characters/677",
             "https://www.anapioficeandfire.com/api/characters/681",
             "https://www.anapioficeandfire.com/api/characters/871",
             "https://www.anapioficeandfire.com/api/characters/1182"

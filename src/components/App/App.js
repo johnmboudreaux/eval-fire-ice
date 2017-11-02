@@ -11,7 +11,7 @@ import Card from '../Card';
 class App extends Component {
 
   componentDidMount() {
-    let fetcher = async () => {
+    const fetcher = async () => {
       const fetchHouses = await houseFetch();
       this.props.actions.houseAction(fetchHouses);
     };

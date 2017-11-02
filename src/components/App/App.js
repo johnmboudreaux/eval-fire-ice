@@ -3,14 +3,17 @@ import PropTypes, { shape, func, string } from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { fakeAction } from '../../actions';
+import { houseAction } from '../../actions';
 import { houseFetch } from './fetchCalls';
 
 class App extends Component {
 
-  async componentDidMount() {
-    let fetchHouses = await houseFetch();
-    console.log(fetchHouses);
+  componentDidMount() {
+    let fetcher = async () => {
+      const fetchHouses = await houseFetch();
+      this.props.houseAction(fetchHouses);
+    };
+    fetcher();
   }
 
   render() {
@@ -20,7 +23,7 @@ class App extends Component {
           <img src={logo} className='App-logo' alt='logo' />
           <h2>Welcome to Westeros</h2>
           <button onClick={() => {
-            this.props.fakeAction();
+            this.props.houseAction();
             alert(this.props.fake);
           }}> FAKE ACTION</button>
         </div>
@@ -32,13 +35,16 @@ class App extends Component {
 }
 
 App.propTypes = {
-
+  houseReducer: PropTypes.func,
+  houseAction: PropTypes.func
 };
 
-const mapStateToProps = ({ fake }) => ({ fake });
+const mapStateToProps = (store) => ({
+  houses: store.houses
+});
 
-const mapDispatchToProps = dispatch => ({ fakeAction:
-  () => dispatch(fakeAction())
+const mapDispatchToProps = dispatch => ({
+  houseAction: (houses) => dispatch(houseAction(houses))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

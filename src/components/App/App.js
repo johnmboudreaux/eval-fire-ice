@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes, { shape, func, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   productMapping(houses, index) {
-    console.log(houses);
     return (
       <Card
         name={houses.name}

@@ -5,7 +5,7 @@ const Card = ({
   name,
   founded,
   seats,
-  titles, 
+  titles,
   coatOfArms,
   ancestralWeapons,
   word }) => {

@@ -53,7 +53,7 @@ class App extends Component {
           <img src={logo} className='App-logo' alt='logo' />
           <h2>Welcome to Westeros</h2>
         </div>
-        <div className='Display-info'>
+        <div className='Display-info Container'>
           {this.displayLoading(this.props.houseReducer)}
         </div>
       </div>

@@ -25,7 +25,7 @@ class App extends Component {
       );
     } else {
       return (
-        <img src="/wolf.gif"/>
+        <img src="/wolf.gif" alt="wolf gif"/>
       );
     }
   }

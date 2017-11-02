@@ -1,13 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Card = (props) => {
+const Card = ({
+  name,
+  founded,
+  seats,
+  titles,
+  coatOfArms,
+  ancestralWeapons,
+  word }) => {
+
+  const checkValue = (houseFounded) => {
+    return houseFounded === '' ? 'N/A' : houseFounded;
+  };
+
   return (
     <div className="Card">
-      <h2>{props.name}</h2>
-      <h3>{props.founded}</h3>
+      <h2>{name}</h2>
+      <p>Founded: {checkValue(founded)}</p>
       <p>Seats:
         {
-          props.seats.map((seat, index) => {
+          seats.map((seat, index) => {
             return (
               <span key={index}>
                 {seat}
@@ -18,7 +31,7 @@ const Card = (props) => {
       </p>
       <p>Titles:
         {
-          props.titles.map((title, index) => {
+          titles.map((title, index) => {
             return (
               <span key={index}>
                 {title}
@@ -28,18 +41,31 @@ const Card = (props) => {
           })
         }
       </p>
-      <h3>Weapons</h3>
-      {
-        props.ancestralWeapons.map((weapon, index) => {
-          return (
-            <div key={index}>
-              {weapon}
-            </div>
-          );
-        })
-      }
+      <p>{coatOfArms}</p>
+      <p>Weapons:
+        {
+          ancestralWeapons.map((weapon, index) => {
+            return (
+              <span key={index}>
+                {weapon}
+              </span>
+            );
+          })
+        }
+      </p>
+      <p>{word}</p>
     </div>
   );
+};
+
+Card.propTypes = {
+  name: PropTypes.string,
+  founded: PropTypes.string,
+  seats: PropTypes.array,
+  titles: PropTypes.array,
+  coatOfArms: PropTypes.string,
+  ancestralWeapons: PropTypes.array,
+  word: PropTypes.string
 };
 
 export default Card;

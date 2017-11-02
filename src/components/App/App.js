@@ -4,7 +4,14 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { fakeAction } from '../../actions';
+import { houseFetch } from './fetchCalls';
+
 class App extends Component {
+
+  async componentDidMount() {
+    let fetchHouses = await houseFetch();
+    console.log(fetchHouses);
+  }
 
   render() {
     return (
@@ -25,12 +32,13 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fake: shape({ fake: string }),
-  fakeAction: func.isRequired
+
 };
 
 const mapStateToProps = ({ fake }) => ({ fake });
+
 const mapDispatchToProps = dispatch => ({ fakeAction:
   () => dispatch(fakeAction())
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);

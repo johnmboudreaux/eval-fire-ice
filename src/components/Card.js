@@ -8,7 +8,7 @@ const Card = ({
   titles,
   coatOfArms,
   ancestralWeapons,
-  word }) => {
+  words }) => {
 
   const checkValue = (houseFounded) => {
     return houseFounded === '' ? 'N/A' : houseFounded;
@@ -53,7 +53,7 @@ const Card = ({
           })
         }
       </p>
-      <p>{word}</p>
+      <p>{words}</p>
     </div>
   );
 };
@@ -65,7 +65,7 @@ Card.propTypes = {
   titles: PropTypes.array,
   coatOfArms: PropTypes.string,
   ancestralWeapons: PropTypes.array,
-  word: PropTypes.string
+  words: PropTypes.string
 };
 
 export default Card;

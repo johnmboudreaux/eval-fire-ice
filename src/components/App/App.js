@@ -3,7 +3,8 @@ import PropTypes, { shape, func, string } from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { houseAction } from '../../actions';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../../actions/index';
 import { houseFetch } from './fetchCalls';
 import Card from '../Card';
 
@@ -12,21 +13,22 @@ class App extends Component {
   componentDidMount() {
     let fetcher = async () => {
       const fetchHouses = await houseFetch();
-      this.props.houseAction(fetchHouses);
+      this.props.actions.houseAction(fetchHouses);
     };
     fetcher();
   }
 
-  productMapping(house, index) {
+  productMapping(houses, index) {
+    console.log(houses);
     return (
       <Card
-        name={house.name}
-        founded={house.founded}
-        seats={house.seats}
-        titles={house.titles}
-        coatOfArms={house.coatOfArms}
-        ancestralWeapons={house.ancestralWeapons}
-        words={house.words}
+        name={houses.name}
+        founded={houses.founded}
+        seats={houses.seats}
+        titles={houses.titles}
+        coatOfArms={houses.coatOfArms}
+        ancestralWeapons={houses.ancestralWeapons}
+        words={houses.words}
         key={index}
       />
     );
@@ -40,7 +42,7 @@ class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
-          {this.productMapping()}
+          {this.props.houseReducer.map(this.productMapping)}
         </div>
       </div>
     );
@@ -49,15 +51,13 @@ class App extends Component {
 
 App.propTypes = {
   houseReducer: PropTypes.func,
-  houseAction: PropTypes.func
+  actions: PropTypes.object
 };
 
-const mapStateToProps = (store) => ({
-  houses: store.houses
-});
+const mapStateToProps = ({houseReducer}) => ({houseReducer});
 
 const mapDispatchToProps = dispatch => ({
-  houseAction: (houses) => dispatch(houseAction(houses))
+  actions: bindActionCreators(Actions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

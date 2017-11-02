@@ -18,6 +18,18 @@ class App extends Component {
     fetcher();
   }
 
+  displayLoading(houses) {
+    if (houses.length !== 0) {
+      return  (
+        houses.map(this.productMapping)
+      );
+    } else {
+      return (
+        <img src="/wolf.gif"/>
+      );
+    }
+  }
+
   productMapping(houses, index) {
     console.log(houses);
     return (
@@ -42,7 +54,7 @@ class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
-          {this.props.houseReducer.map(this.productMapping)}
+          {this.displayLoading(this.props.houseReducer)}
         </div>
       </div>
     );
@@ -50,7 +62,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  houseReducer: PropTypes.func,
+  houseReducer: PropTypes.array,
   actions: PropTypes.object
 };
 
